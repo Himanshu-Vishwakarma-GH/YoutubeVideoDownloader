@@ -70,7 +70,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Author
 
-[Your Name]
+[Himanshu Vishwakarma](https://github.com/Himanshu-Vishwakarma-GH)
+
+[Vaibhav Maurya](https://github.com/vaibhavr21)
 
 ## Disclaimer
 
