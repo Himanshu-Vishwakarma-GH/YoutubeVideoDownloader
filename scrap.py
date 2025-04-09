@@ -1,4 +1,3 @@
-#//importing things
 import streamlit as st
 import yt_dlp
 import os
@@ -70,16 +69,14 @@ def download_video(url, format_id):
         ydl_opts = {
             # Modified to ensure we get both video and audio
             'format': f'{format_id}+bestaudio/best',
-            'outtmpl': 'downloads/%(title)s.%(ext)s',
+            'outtmpl': '%(title)s.%(ext)s',  # Save in the current directory
             'no_warnings': True,
             'quiet': True,
-            # Add format sorting to prefer formats with audio
-            'format_sort': ['hasvid', 'hasaud']
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
-            return f"downloads/{info['title']}.{info['ext']}"
+            return f"{info['title']}.{info['ext']}"  # Return the file name
     except Exception as e:
         st.error(f"Error downloading video: {str(e)}")
         return None
@@ -90,10 +87,6 @@ def is_valid_youtube_url(url):
 def main():
     st.title("YouTube Video Downloader")
     
-    # Create downloads directory if it doesn't exist
-    if not os.path.exists('downloads'):
-        os.makedirs('downloads')
-
     url = st.text_input("Enter YouTube Video URL")
 
     if url:
@@ -130,7 +123,8 @@ def main():
                                     file_name=os.path.basename(video_path),
                                     mime="video/mp4"
                                 )
-                            st.success("Video downloaded successfully!")
+                            st.success("Video is ready for download!")
+                            os.remove(video_path)  # Clean up after download
                 else:
                     st.warning("No supported video formats found.")
         else:
