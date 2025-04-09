@@ -18,7 +18,7 @@ def get_video_info(url):
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
             },
             'noplaylist': True,  # Ensure only the video is processed
-            'proxy': 'http://your-proxy-server:port',  # Replace with a valid proxy
+            #'proxy': 'http://your-proxy-server:port',  # Replace with a valid proxy
             'verbose': True  # Enable debugging to see detailed logs
         }
         
@@ -82,7 +82,7 @@ def download_video(url, format_id):
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
             },
             'noplaylist': True,  # Ensure only the video is processed
-            'proxy': 'http://your-proxy-server:port',  # Replace with a valid proxy
+            #'proxy': 'http://your-proxy-server:port',  # Replace with a valid proxy
             'verbose': True  # Enable debugging to see detailed logs
         }
 
