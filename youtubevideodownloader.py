@@ -12,8 +12,8 @@ def get_video_info(url):
             'quiet': True,
             'no_warnings': True,
             'extract_flat': False,
-            # Modified to ensure we get formats with both video and audio
-            'format': 'best/bestvideo*+bestaudio/best'
+            'format': 'best/bestvideo*+bestaudio/best',
+            'cookiefile': 'cookies.txt',  # Use cookies to bypass restrictions
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -67,11 +67,11 @@ def get_video_info(url):
 def download_video(url, format_id):
     try:
         ydl_opts = {
-            # Modified to ensure we get both video and audio
             'format': f'{format_id}+bestaudio/best',
             'outtmpl': '%(title)s.%(ext)s',  # Save in the current directory
             'no_warnings': True,
             'quiet': True,
+            'cookiefile': 'cookies.txt',  # Use cookies to bypass restrictions
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -124,7 +124,7 @@ def main():
                                     mime="video/mp4"
                                 )
                             st.success("Video is ready for download!")
-                            os.remove(video_path)  
+                            os.remove(video_path)  # Clean up after download
                 else:
                     st.warning("No supported video formats found.")
         else:
