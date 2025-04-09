@@ -124,7 +124,7 @@ def main():
                                     mime="video/mp4"
                                 )
                             st.success("Video is ready for download!")
-                            os.remove(video_path)  # Clean up after download
+                            os.remove(video_path)  
                 else:
                     st.warning("No supported video formats found.")
         else:
