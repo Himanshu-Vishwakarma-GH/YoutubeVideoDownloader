@@ -77,18 +77,20 @@ def download_video(url, format_id):
             'outtmpl': '%(title)s.%(ext)s',  # Save in the current directory
             'no_warnings': True,
             'quiet': True,
-            'cookiefile': 'cookies.txt',  # Use cookies to bypass restrictions
+            'cookiefile': 'cookies.txt',  # Ensure cookies are used
             'http_headers': {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
             },
             'noplaylist': True,  # Ensure only the video is processed
-            #'proxy': 'http://your-proxy-server:port',  # Replace with a valid proxy
             'verbose': True  # Enable debugging to see detailed logs
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
             return f"{info['title']}.{info['ext']}"  # Return the file name
+    except yt_dlp.utils.DownloadError as e:
+        st.error(f"Download error: {str(e)}")
+        return None
     except Exception as e:
         st.error(f"Error downloading video: {str(e)}")
         return None
